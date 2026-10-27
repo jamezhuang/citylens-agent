@@ -1,0 +1,31 @@
+# Local runtime and credentials; never store these in source history.
+.env
+.env.*
+!.env.example
+*.env
+.venv/
+node_modules/
+__pycache__/
+.pytest_cache/
+.idea/
+target/
+dist/
+data/
+logs/
+runtime/
+reports/
+*.log
+*.sqlite*
+*.db
+*.exe
+*.pid
+deployment-chat-check.json
+.DS_Store
+
+# Private publication exclusions
+citylens-lab/
+merge-review/
+private-backups/
+*.bundle
+*.patch
+*.zip

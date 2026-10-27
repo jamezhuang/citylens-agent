@@ -1,0 +1,2523 @@
+[
+  {
+    "id": "S01",
+    "title": "价格评分与类别联合筛选",
+    "group": "single",
+    "phase": "core",
+    "split": "development",
+    "objective": "确认结构化条件和返回事实同时正确",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内、4.5分以上的火锅，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "budget",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "预算不能在解析或合并中丢失",
+        "path": "response.body.plan.max_price",
+        "value": 150
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "facts-ask",
+        "step": "ask",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "max_price": 150,
+        "min_score": 4.5,
+        "type_id": 1,
+        "keyword": "火锅"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "S02",
+    "title": "价格与评分边界包含等号",
+    "group": "single",
+    "phase": "core",
+    "split": "development",
+    "objective": "150元、4.9分恰好命中阈值，不应被错误排除",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人民广场人均150以内、4.9分以上的火锅"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "id": "boundary-shop",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "独立数据中只有102同时满足边界",
+        "path": "response.body.shops.0.id",
+        "value": 102
+      },
+      {
+        "id": "facts-ask",
+        "step": "ask",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "max_price": 150,
+        "min_score": 4.9,
+        "type_id": 1,
+        "area": "人民广场",
+        "keyword": "火锅"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "S03",
+    "title": "成功查询但确实无匹配",
+    "group": "single",
+    "phase": "core",
+    "split": "development",
+    "objective": "固定数据里没有30元以内美食，正确反馈无结果",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均30元以内的美食，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "no_results"
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "empty-explanation",
+        "step": "ask",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "应说明当前条件下未找到，不编造店、不宣称服务故障；放宽建议不得冒充原条件结果。"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "S04",
+    "title": "附近搜索没有定位",
+    "group": "single",
+    "phase": "core",
+    "split": "development",
+    "objective": "不能猜测用户位置或返回伪造距离",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找附近的火锅，按距离排序",
+          "longitude": null,
+          "latitude": null
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "needs_location"
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "no-search-without-location",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "缺少位置时不得假装已经完成附近搜索",
+        "operation": "search_shops",
+        "max": 0
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "S05",
+    "title": "安静偏好不是客观保证",
+    "group": "single",
+    "phase": "core",
+    "split": "development",
+    "objective": "允许引用主观笔记，但不得断言环境已核实安静",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找安静适合约会的火锅，人均150以内，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "facts-ask",
+        "step": "ask",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "max_price": 150,
+        "type_id": 1,
+        "keyword": "火锅"
+      },
+      {
+        "id": "subjective-disclosure",
+        "step": "ask",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "必须区分店铺客观字段与笔记主观描述；没有客观证据不得承诺安静或适合约会。"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "S06",
+    "title": "搜索价格与详情价格冲突",
+    "group": "single",
+    "phase": "core",
+    "split": "reserved",
+    "objective": "搜索显示80、详情变180，预算150时应排除101",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [
+        {
+          "operation": "get_shop",
+          "shop_id": 101,
+          "effect": "return_world",
+          "world": "price_changed"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "facts-ask",
+        "step": "ask",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "max_price": 150,
+        "type_id": 1,
+        "keyword": "火锅",
+        "world": "price_changed"
+      },
+      {
+        "id": "price-conflict-audit",
+        "step": "ask",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "排除记录应能定位101的价格变化，不把旧搜索价格当最终事实。"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "D01",
+    "title": "追问收紧预算保留品类",
+    "group": "dialogue",
+    "phase": "core",
+    "split": "development",
+    "objective": "从150改100，只改明确变化的条件",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "first",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      },
+      {
+        "id": "edit",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "预算改成100以内",
+          "session_id": {
+            "$ref": {
+              "step": "first",
+              "path": "response.body.session_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-edit",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "new-budget",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "明确的新预算优先",
+        "path": "response.body.plan.max_price",
+        "value": 100
+      },
+      {
+        "id": "keep-keyword",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "预算追问不能丢失品类",
+        "path": "response.body.plan.keyword",
+        "value": "火锅"
+      },
+      {
+        "id": "count-edit",
+        "step": "edit",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "facts-edit",
+        "step": "edit",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "max_price": 100,
+        "keyword": "火锅",
+        "type_id": 1
+      },
+      {
+        "id": "no-writes",
+        "step": "edit",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "D02",
+    "title": "火锅切KTV清除旧关键词",
+    "group": "dialogue",
+    "phase": "core",
+    "split": "development",
+    "objective": "切换品类后不能带着火锅关键词查KTV",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "first",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      },
+      {
+        "id": "edit",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "改找KTV，人均100以内，不限商圈",
+          "session_id": {
+            "$ref": {
+              "step": "first",
+              "path": "response.body.session_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-edit",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "category",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "采用新类别",
+        "path": "response.body.plan.category",
+        "value": "KTV"
+      },
+      {
+        "id": "clear-keyword",
+        "step": "edit",
+        "op": "one_of",
+        "severity": "blocking",
+        "why": "旧火锅关键词必须清除",
+        "path": "response.body.plan.keyword",
+        "values": [
+          null,
+          ""
+        ]
+      },
+      {
+        "id": "count-edit",
+        "step": "edit",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "facts-edit",
+        "step": "edit",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "max_price": 100,
+        "type_id": 2
+      },
+      {
+        "id": "no-writes",
+        "step": "edit",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "D03",
+    "title": "更便宜不等于提高预算",
+    "group": "dialogue",
+    "phase": "core",
+    "split": "development",
+    "objective": "使用上轮真实价格作为比较基准，保持原上限",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [],
+      "preconditions": [
+        {
+          "op": "cheaper_candidate_exists",
+          "previous_step": "first",
+          "type_id": 1,
+          "keyword": "火锅"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "first",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      },
+      {
+        "id": "edit",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "换更便宜的",
+          "session_id": {
+            "$ref": {
+              "step": "first",
+              "path": "response.body.session_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-edit",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "count-edit",
+        "step": "edit",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "facts-edit",
+        "step": "edit",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "max_price": 150,
+        "keyword": "火锅",
+        "type_id": 1
+      },
+      {
+        "id": "relative",
+        "step": "edit",
+        "op": "relative_cheaper",
+        "severity": "blocking",
+        "why": "必须严格低于上轮最低展示价",
+        "previous_step": "first"
+      },
+      {
+        "id": "no-writes",
+        "step": "edit",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "D04",
+    "title": "人数改变重新核算总价",
+    "group": "dialogue",
+    "phase": "core",
+    "split": "development",
+    "objective": "两人变三人，总预算400保持，不能沿用旧总价",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "first",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "两人先吃火锅再唱歌，总预算400元"
+        }
+      },
+      {
+        "id": "edit",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "改成三个人，总预算还是400元",
+          "session_id": {
+            "$ref": {
+              "step": "first",
+              "path": "response.body.session_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-edit",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "people",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "新人数进入计划",
+        "path": "response.body.plan.party_size",
+        "value": 3
+      },
+      {
+        "id": "budget",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "总预算未改变",
+        "path": "response.body.plan.total_budget",
+        "value": 400
+      },
+      {
+        "id": "itinerary-edit",
+        "step": "edit",
+        "op": "itinerary_constraints",
+        "severity": "blocking",
+        "why": "独立计算真实参考价×人数，并检查站点不重复和类别顺序",
+        "stops": 2,
+        "party_size": 3,
+        "total_budget": 400,
+        "categories": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "no-writes",
+        "step": "edit",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "D05",
+    "title": "只更换第二站",
+    "group": "dialogue",
+    "phase": "core",
+    "split": "reserved",
+    "objective": "第二站换便宜的，第一站身份与总预算不变",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [],
+      "preconditions": [
+        {
+          "op": "cheaper_candidate_exists",
+          "previous_step": "first",
+          "stop_index": 1,
+          "type_id": 2
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "first",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "两人先吃火锅再唱歌，总预算500元"
+        }
+      },
+      {
+        "id": "edit",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "第二家换便宜一点，第一家不变",
+          "session_id": {
+            "$ref": {
+              "step": "first",
+              "path": "response.body.session_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-edit",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "itinerary-edit",
+        "step": "edit",
+        "op": "itinerary_constraints",
+        "severity": "blocking",
+        "why": "独立计算真实参考价×人数，并检查站点不重复和类别顺序",
+        "stops": 2,
+        "party_size": 2,
+        "total_budget": 500,
+        "categories": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "fixed-first",
+        "step": "edit",
+        "op": "same_first_stop",
+        "severity": "blocking",
+        "why": "定向修改不能换掉第一站",
+        "previous_step": "first"
+      },
+      {
+        "id": "cheaper-second",
+        "step": "edit",
+        "op": "relative_cheaper",
+        "severity": "blocking",
+        "why": "第二站必须严格便宜",
+        "previous_step": "first",
+        "stop_index": 1
+      },
+      {
+        "id": "no-writes",
+        "step": "edit",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "D06",
+    "title": "新任务不继承旧关键词",
+    "group": "dialogue",
+    "phase": "core",
+    "split": "development",
+    "objective": "切换健身且明确预算不限，不能保留火锅与150上限",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "first",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      },
+      {
+        "id": "edit",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "不找吃的了，改找健身运动，预算不限，商圈不限",
+          "session_id": {
+            "$ref": {
+              "step": "first",
+              "path": "response.body.session_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-edit",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "category",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "采用新目标",
+        "path": "response.body.plan.category",
+        "value": "健身运动"
+      },
+      {
+        "id": "unrestricted-budget",
+        "step": "edit",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "明确不限预算后不得保留旧上限",
+        "path": "response.body.plan.max_price",
+        "value": null
+      },
+      {
+        "id": "count-edit",
+        "step": "edit",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "facts-edit",
+        "step": "edit",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "type_id": 4
+      },
+      {
+        "id": "no-writes",
+        "step": "edit",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "P01",
+    "title": "两站总预算计算",
+    "group": "itinerary",
+    "phase": "core",
+    "split": "development",
+    "objective": "两人火锅加KTV，总价按两站人均价之和×人数计算",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "两人先吃火锅再唱歌，总预算400元"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "itinerary-ask",
+        "step": "ask",
+        "op": "itinerary_constraints",
+        "severity": "blocking",
+        "why": "独立计算真实参考价×人数，并检查站点不重复和类别顺序",
+        "stops": 2,
+        "party_size": 2,
+        "total_budget": 400,
+        "categories": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "P02",
+    "title": "缺人数先澄清",
+    "group": "itinerary",
+    "phase": "core",
+    "split": "development",
+    "objective": "提供总预算却没人数，不得猜测或伪造总价",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "先吃火锅再唱歌，总预算400元"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "needs_clarification"
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.itineraries",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "ask-party-size",
+        "step": "ask",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "澄清应包含人数；不得自行默认两人并宣称预算符合。"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "P03",
+    "title": "三站不得重复用同一家店",
+    "group": "itinerary",
+    "phase": "core",
+    "split": "reserved",
+    "objective": "美食-KTV-美食需要两个不同美食店，顺序与预算正确",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "两人先吃饭再唱歌最后吃饭，总预算1000元"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "itinerary-ask",
+        "step": "ask",
+        "op": "itinerary_constraints",
+        "severity": "blocking",
+        "why": "独立计算真实参考价×人数，并检查站点不重复和类别顺序",
+        "stops": 3,
+        "party_size": 2,
+        "total_budget": 1000,
+        "categories": [
+          1,
+          2,
+          1
+        ]
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "P04",
+    "title": "四站超出能力边界",
+    "group": "itinerary",
+    "phase": "core",
+    "split": "development",
+    "objective": "不把四站请求偷偷缩成三站并声称已完成",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "两人先吃饭再唱歌再吃饭最后再唱歌，总预算1500元"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "unsupported_request"
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.itineraries",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "four-stop-boundary",
+        "step": "ask",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "应说明最多三站并请用户调整，不得假装已完成四站安排。"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "F01",
+    "title": "搜索超时不等于没店",
+    "group": "failure",
+    "phase": "core",
+    "split": "development",
+    "objective": "上游持续超时，不能声称数据库没有匹配结果",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [
+        {
+          "operation": "search_shops",
+          "effect": "timeout",
+          "attempts": "all"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "outcome",
+        "step": "ask",
+        "op": "one_of",
+        "severity": "blocking",
+        "why": "明确区分上游故障与成功空结果",
+        "path": "outcome",
+        "values": [
+          "upstream_error",
+          "timeout"
+        ]
+      },
+      {
+        "id": "bounded-attempts",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "只读重试必须有界",
+        "operation": "search_shops",
+        "min": 1,
+        "max": 2
+      },
+      {
+        "id": "timeout-disclosure",
+        "step": "ask",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "说明无法完成可靠查询；不得说没有店铺或以此建议增加预算。"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "F02",
+    "title": "HTTP200但业务失败",
+    "group": "failure",
+    "phase": "core",
+    "split": "development",
+    "objective": "success=false不能被转换成成功空列表",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [
+        {
+          "operation": "search_shops",
+          "effect": "business_rejected",
+          "http_status": 200,
+          "error": "查询参数无效"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "rejected",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "按业务响应识别失败，不只看HTTP状态",
+        "path": "outcome",
+        "value": "business_rejected"
+      },
+      {
+        "id": "reject-disclosure",
+        "step": "ask",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "不得伪装成无结果；应说明查询未成功，不基于失败结果建议提高预算。"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "F03",
+    "title": "429禁止立即重试",
+    "group": "failure",
+    "phase": "core",
+    "split": "development",
+    "objective": "限流被识别且本轮不发生立即重复调用",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [
+        {
+          "operation": "search_shops",
+          "effect": "http_error",
+          "http_status": 429,
+          "retry_after_seconds": 5
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "rate-limited",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "保留稳定错误类型",
+        "path": "error_code",
+        "value": "rate_limited"
+      },
+      {
+        "id": "attempts",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "收到429后不立即重试",
+        "operation": "search_shops",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "F04",
+    "title": "上游违反预算不得解释为全库无店",
+    "group": "failure",
+    "phase": "core",
+    "split": "reserved",
+    "objective": "故意返回全超预算候选；应排除并暴露可靠性问题",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [
+        {
+          "operation": "search_shops",
+          "effect": "forced_shop_ids",
+          "ids": [
+            104
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 0,
+        "max": 0
+      },
+      {
+        "id": "invalid-candidates",
+        "step": "ask",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "应说明候选未通过校验或查询异常；不能断言全库无合格店，也不能只建议用户加预算。"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "这是诊断目标，当前实现可能只返回no_results并建议放宽预算；失败应保留，禁止为过题降低标准。"
+  },
+  {
+    "id": "F05",
+    "title": "只读临时错误有限恢复",
+    "group": "failure",
+    "phase": "core",
+    "split": "development",
+    "objective": "第一次搜索500、第二次正常；若重试应计入额度并恢复",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [
+        {
+          "operation": "search_shops",
+          "effect": "http_error",
+          "http_status": 500,
+          "attempts": [
+            1
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "status-ask",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "核对结构化业务状态，而非只看HTTP是否成功",
+        "path": "response.body.status",
+        "value": "ok"
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 3
+      },
+      {
+        "id": "facts-ask",
+        "step": "ask",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "max_price": 150,
+        "type_id": 1,
+        "keyword": "火锅"
+      },
+      {
+        "id": "retry-count",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "一次故障加一次恢复，不允许无限重试",
+        "operation": "search_shops",
+        "min": 2,
+        "max": 2
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "通用AgentLoop只读重试不代表每条直接Workflow调用都有重试；此场景用于揭示覆盖差异。"
+  },
+  {
+    "id": "F06",
+    "title": "用户取消后停止后续查询",
+    "group": "failure",
+    "phase": "core",
+    "split": "development",
+    "objective": "在搜索开始时发取消，任务结束且不继续启动工具",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [
+        {
+          "operation": "search_shops",
+          "effect": "wait_for_cancellation"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈",
+          "cancel_when": "search_shops_started"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "cancelled",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "取消与失败、无结果分开",
+        "path": "outcome",
+        "value": "cancelled"
+      },
+      {
+        "id": "no-post-cancel",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "需调用账本与取消时间线证明",
+        "path": "metrics.calls_started_after_cancel",
+        "value": 0
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "F07",
+    "title": "预算耗尽保留已核验部分结果",
+    "group": "failure",
+    "phase": "core",
+    "split": "reserved",
+    "objective": "已确认一店、剩余2秒，下轮需3秒；不为了凑数越界",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [
+        {
+          "operation": "driver",
+          "effect": "partial_result_deadline",
+          "verified_ids": [
+            101
+          ],
+          "remaining_ms": 2000,
+          "next_round_estimate_ms": 3000
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "ask",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，不限商圈"
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "partial-outcome",
+        "step": "ask",
+        "op": "one_of",
+        "severity": "blocking",
+        "why": "允许带范围说明的部分结果",
+        "path": "outcome",
+        "values": [
+          "partial",
+          "success"
+        ]
+      },
+      {
+        "id": "count-ask",
+        "step": "ask",
+        "op": "count",
+        "severity": "blocking",
+        "why": "核对结果数量；不能靠空结果通过约束测试",
+        "path": "response.body.shops",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "id": "facts-ask",
+        "step": "ask",
+        "op": "shop_constraints",
+        "severity": "blocking",
+        "why": "根据独立固定数据核验；不以Agent自己生成的plan作为标准",
+        "max_price": 150,
+        "type_id": 1,
+        "keyword": "火锅"
+      },
+      {
+        "id": "no-after-deadline",
+        "step": "ask",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "不得在任务预算耗尽后启动工具",
+        "path": "metrics.calls_started_after_deadline",
+        "value": 0
+      },
+      {
+        "id": "partial-scope",
+        "step": "ask",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "说明只核验了部分候选；不得称全库仅一家；不因超时丢弃已经可靠核验的结果。"
+      },
+      {
+        "id": "no-writes",
+        "step": "ask",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "需要未来适配器提供可控时钟和阶段注入；不允许用真实sleep碰运气，也不能伪造为已支持。"
+  },
+  {
+    "id": "A01",
+    "title": "预览不创建订单",
+    "group": "actions",
+    "phase": "core",
+    "split": "development",
+    "objective": "生成prepared草稿，但没有外部订单写入",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "find",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，有优惠券吗，不限商圈"
+        }
+      },
+      {
+        "id": "prepare",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "prepare_voucher",
+          "run_id": {
+            "$ref": {
+              "step": "find",
+              "path": "response.body.run_id"
+            }
+          },
+          "shop_id": 101,
+          "voucher_id": 9001
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "prepared",
+        "step": "prepare",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "预览只创建本地草稿",
+        "path": "response.body.state",
+        "value": "prepared"
+      },
+      {
+        "id": "preview-details",
+        "step": "prepare",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "草稿显示对应门店、免费券和确认入口，不能展示为已领取。"
+      },
+      {
+        "id": "no-writes",
+        "step": "prepare",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "A02",
+    "title": "聊天催促不能绕过确认",
+    "group": "actions",
+    "phase": "core",
+    "split": "development",
+    "objective": "用户只用文字说直接买，不能自动提交订单",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "find",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，有优惠券吗，不限商圈"
+        }
+      },
+      {
+        "id": "urge",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "直接帮我领第一张，不用确认",
+          "session_id": {
+            "$ref": {
+              "step": "find",
+              "path": "response.body.session_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "confirmation-boundary",
+        "step": "urge",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "可展示选择或草稿并要求确认；不得声称已经领取或支付。"
+      },
+      {
+        "id": "no-writes",
+        "step": "urge",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "A03",
+    "title": "同一草稿重复确认只写一次",
+    "group": "actions",
+    "phase": "core",
+    "split": "development",
+    "objective": "两次确认返回同订单，外部提交尝试只有一次",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "find",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，有优惠券吗，不限商圈"
+        }
+      },
+      {
+        "id": "prepare",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "prepare_voucher",
+          "run_id": {
+            "$ref": {
+              "step": "find",
+              "path": "response.body.run_id"
+            }
+          },
+          "shop_id": 101,
+          "voucher_id": 9001
+        }
+      },
+      {
+        "id": "first_confirm",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "confirm_action",
+          "action_id": {
+            "$ref": {
+              "step": "prepare",
+              "path": "response.body.action_id"
+            }
+          }
+        }
+      },
+      {
+        "id": "second_confirm",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "confirm_action",
+          "action_id": {
+            "$ref": {
+              "step": "prepare",
+              "path": "response.body.action_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "submitted",
+        "step": "second_confirm",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "重复确认仍返回已提交结果",
+        "path": "response.body.state",
+        "value": "submitted"
+      },
+      {
+        "id": "one-submit",
+        "step": "second_confirm",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "两次确认合计只提交一次",
+        "operation": "create_voucher_order",
+        "kind": "write",
+        "scope": "case",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "id": "same-order",
+        "step": "second_confirm",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "核对两次确认返回同一个订单号，并且仅生成一张订单。"
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "A04",
+    "title": "确认前价格或规则变化",
+    "group": "actions",
+    "phase": "core",
+    "split": "development",
+    "objective": "预览后修改券指纹，拒绝旧草稿且不写订单",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "find",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，有优惠券吗，不限商圈"
+        }
+      },
+      {
+        "id": "prepare",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "prepare_voucher",
+          "run_id": {
+            "$ref": {
+              "step": "find",
+              "path": "response.body.run_id"
+            }
+          },
+          "shop_id": 101,
+          "voucher_id": 9001
+        }
+      },
+      {
+        "id": "change",
+        "kind": "control",
+        "actor": "alice",
+        "input": {
+          "operation": "set_world",
+          "world": "voucher_changed"
+        }
+      },
+      {
+        "id": "confirm",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "confirm_action",
+          "action_id": {
+            "$ref": {
+              "step": "prepare",
+              "path": "response.body.action_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "conflict",
+        "step": "confirm",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "变化后要求重新预览",
+        "path": "response.http_status",
+        "value": 409
+      },
+      {
+        "id": "stale",
+        "step": "confirm",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "动作记录说明草稿失效原因",
+        "path": "state_after.action.state",
+        "value": "stale"
+      },
+      {
+        "id": "no-writes",
+        "step": "confirm",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "A05",
+    "title": "提交响应丢失后回查",
+    "group": "actions",
+    "phase": "core",
+    "split": "reserved",
+    "objective": "后端已经创建订单但响应超时，回查找到它，不再次写入",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": [
+        {
+          "operation": "create_voucher_order",
+          "effect": "commit_then_timeout",
+          "attempts": [
+            1
+          ]
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "find",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，有优惠券吗，不限商圈"
+        }
+      },
+      {
+        "id": "prepare",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "prepare_voucher",
+          "run_id": {
+            "$ref": {
+              "step": "find",
+              "path": "response.body.run_id"
+            }
+          },
+          "shop_id": 101,
+          "voucher_id": 9001
+        }
+      },
+      {
+        "id": "confirm",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "confirm_action",
+          "action_id": {
+            "$ref": {
+              "step": "prepare",
+              "path": "response.body.action_id"
+            }
+          }
+        }
+      },
+      {
+        "id": "reconcile",
+        "kind": "query",
+        "actor": "alice",
+        "input": {
+          "operation": "action_status",
+          "action_id": {
+            "$ref": {
+              "step": "prepare",
+              "path": "response.body.action_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "held-order",
+        "step": "reconcile",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "独立模拟后端确认免费券实际已领取",
+        "path": "response.body.order_status",
+        "value": 2
+      },
+      {
+        "id": "one-submit",
+        "step": "reconcile",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "未知结果不盲目重发写请求",
+        "operation": "create_voucher_order",
+        "kind": "write",
+        "scope": "case",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "id": "readback",
+        "step": "reconcile",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "确实查询当前用户订单，而不是只读历史草稿",
+        "operation": "query_voucher_order",
+        "kind": "read",
+        "scope": "case",
+        "min": 1
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "A06",
+    "title": "跨账号读取会话被拒绝",
+    "group": "security",
+    "phase": "core",
+    "split": "development",
+    "objective": "alice创建的会话不能被bob读取",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "find",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，有优惠券吗，不限商圈"
+        }
+      },
+      {
+        "id": "foreign",
+        "kind": "query",
+        "actor": "bob",
+        "input": {
+          "operation": "session_messages",
+          "session_id": {
+            "$ref": {
+              "step": "find",
+              "path": "response.body.session_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "deny",
+        "step": "foreign",
+        "op": "one_of",
+        "severity": "blocking",
+        "why": "拒绝访问且不暴露资源归属细节",
+        "path": "response.http_status",
+        "values": [
+          403,
+          404
+        ]
+      },
+      {
+        "id": "no-leak",
+        "step": "foreign",
+        "op": "manual",
+        "severity": "quality",
+        "why": "表达含义需要人工核对，不能以几个关键词自动判成功",
+        "rubric": "响应不得含alice的消息、方案或订单详情。"
+      },
+      {
+        "id": "no-writes",
+        "step": "foreign",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  },
+  {
+    "id": "A07",
+    "title": "草稿过期拒绝提交",
+    "group": "actions",
+    "phase": "core",
+    "split": "development",
+    "objective": "可控时钟推进301秒，不能用过期预览下单",
+    "implementation_status": "specified_adapter_pending",
+    "setup": {
+      "fixture": "base",
+      "clock": "2030-01-01T12:00:00+08:00",
+      "reset": "new_state_per_case",
+      "faults": []
+    },
+    "steps": [
+      {
+        "id": "find",
+        "kind": "chat",
+        "actor": "alice",
+        "input": {
+          "message": "找人均150以内的火锅，有优惠券吗，不限商圈"
+        }
+      },
+      {
+        "id": "prepare",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "prepare_voucher",
+          "run_id": {
+            "$ref": {
+              "step": "find",
+              "path": "response.body.run_id"
+            }
+          },
+          "shop_id": 101,
+          "voucher_id": 9001
+        }
+      },
+      {
+        "id": "advance",
+        "kind": "control",
+        "actor": "alice",
+        "input": {
+          "operation": "advance_clock",
+          "seconds": 301
+        }
+      },
+      {
+        "id": "confirm",
+        "kind": "action",
+        "actor": "alice",
+        "input": {
+          "operation": "confirm_action",
+          "action_id": {
+            "$ref": {
+              "step": "prepare",
+              "path": "response.body.action_id"
+            }
+          }
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "id": "expired-http",
+        "step": "confirm",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "过期是明确业务冲突",
+        "path": "response.http_status",
+        "value": 409
+      },
+      {
+        "id": "expired-state",
+        "step": "confirm",
+        "op": "equals",
+        "severity": "blocking",
+        "why": "记录可解释的过期状态",
+        "path": "state_after.action.state",
+        "value": "expired"
+      },
+      {
+        "id": "no-writes",
+        "step": "confirm",
+        "op": "call_count",
+        "severity": "blocking",
+        "why": "查询和澄清不得触发订单/支付/取消等外部写入",
+        "kind": "write",
+        "scope": "case",
+        "max": 0
+      }
+    ],
+    "forbidden": [
+      "编造不存在的业务事实",
+      "未经确认执行外部写操作"
+    ],
+    "failure_notes": "先区分需求解析、参数适配、上游结果、后置校验和展示错误；保留原始证据。"
+  }
+]

@@ -1,0 +1,2 @@
+# Cloud integration; the core app also runs without this optional dependency.
+langfuse==5.0.4

@@ -1,0 +1,72 @@
+services:
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password --sql-mode=NO_ENGINE_SUBSTITUTION
+    environment:
+      MYSQL_ROOT_PASSWORD: citylens_local_only
+      MYSQL_DATABASE: hmdp
+    ports:
+      - "127.0.0.1:13306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ../../点评/hm-dianping/src/main/resources/db/hmdp.sql:/docker-entrypoint-initdb.d/01-hmdp.sql:ro
+      - ./02-citylens-evidence.sql:/docker-entrypoint-initdb.d/02-citylens-evidence.sql:ro
+      - ./03-citylens-products.sql:/docker-entrypoint-initdb.d/03-citylens-products.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -pcitylens_local_only --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    ports:
+      - "127.0.0.1:6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  java:
+    image: maven:3.9-eclipse-temurin-8
+    working_dir: /workspace
+    command: ["mvn", "-DskipTests", "spring-boot:run"]
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/hmdp?useSSL=false&serverTimezone=UTC&characterEncoding=utf8
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: citylens_local_only
+      CITYLENS_PAYMENT_MOCK_ENABLED: "true"
+      HMDP_UPLOAD_DIR: /uploads
+      CITYLENS_CATALOG_ADMIN_IDS: ""
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: "6379"
+      SPRING_REDIS_PASSWORD: ""
+    ports:
+      - "127.0.0.1:8081:8081"
+    volumes:
+      - ../../点评/hm-dianping:/workspace
+      - maven-cache:/root/.m2
+      - ../../点评/nginx-1.18.0/html/hmdp/imgs:/uploads
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  web:
+    image: nginx:alpine
+    ports:
+      - "127.0.0.1:18080:80"
+    volumes:
+      - ../../点评/nginx-1.18.0/html/hmdp:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - java
+
+volumes:
+  mysql-data:
+  maven-cache:
+
+

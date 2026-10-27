@@ -1,0 +1,19 @@
+{
+  "version": "citylens-diagnostic-v1",
+  "purpose": "发现当前Agent的真实问题；不为追求通过率降低标准",
+  "expected_core_cases": 30,
+  "expected_future_cases": 6,
+  "fixture_file": "fixtures/worlds.json",
+  "case_files": [
+    "scenarios/core.json",
+    "scenarios/future.json"
+  ],
+  "adapters": {
+    "mock_rules": "asgi-mock-v1",
+    "mock_model": "asgi-mock-v1",
+    "lab_rules": "not_implemented",
+    "lab_model": "not_implemented"
+  },
+  "execution_policy": "Execution requires explicit evaluation.execution; model mode requires --allow-model and bounded budgets",
+  "reserved_note": "6个本地可见保留场景；不是隐藏测试，不能声称严格盲测。"
+}
