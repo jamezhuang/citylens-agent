@@ -75,7 +75,7 @@ def resolve(value, observations):
     return value
 
 
-async def execute_case(case,suite,fixtures,mode,budget,config=None):
+async def execute_case(case,suite,fixtures,mode,budget,config=None,on_step=None):
     from citylens import api
     from citylens import actions as action_module
     from citylens.actions import VoucherActionWorkflow
@@ -171,6 +171,8 @@ async def execute_case(case,suite,fixtures,mode,budget,config=None):
                                  'metrics':{'calls_started_after_cancel':sum(c['started_after_cancel'] for c in calls),
                                             'calls_started_after_deadline':sum(c['started_after_deadline'] for c in calls)}}
                     observations[step['id']]=observation;record['steps'].append(observation)
+                    if on_step is not None:
+                        await on_step(step, observation)
             record['mock_orders_created']=len(backend.world['orders'])
     except Exception as exc:
         record.update({'execution_status':'blocked','reason':'Adapter/step could not complete: '+type(exc).__name__})
