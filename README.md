@@ -8,22 +8,6 @@
 
 网站复用本项目的 Vue 工作台。对话是已验证规则 Agent 案例的交互回放，订单在当前浏览器内模拟；不连接实时大模型，不产生真实交易，刷新页面即重置。可自由浏览合成店铺，并查看原案例运行记录。网站由 Sites 托管，源码保存在本 GitHub 仓库。
 
-## 完整 Agent Demo：5分钟复现
-
-**[开始演示](docs/DEMO.md) · [直接阅读完整执行记录](docs/demo/transcript.md) · [自动验收](https://github.com/jamezhuang/citylens-agent/actions/workflows/agent-demo.yml)**
-
-无需密钥或 Docker，实际执行现有 Agent 和 API：找店 → 多轮调整预算 → 两站规划 → 领券草稿 → 确认 → 重复确认去重 → 查询回执。使用规则 Agent、合成商户及内存订单；不调用模型、不发生真实交易。
-
-```bash
-# 克隆仓库后，在 CityLens 目录执行
-python -m pip install -r requirements.txt
-python demo.py --interactive
-```
-
-Windows虚拟环境、macOS/Linux和Codespaces的完整命令见[演示指南](docs/DEMO.md)。已有Vue产品界面的启动说明保留在下方。
-
-用自然语言完成找店、多轮条件调整、多站规划与优惠券确认。
-
 ## 界面展示
 
 | 智能助手 | 发现店铺 | 探店社区 |
