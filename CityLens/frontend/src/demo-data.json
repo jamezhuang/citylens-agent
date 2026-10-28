@@ -1,0 +1,3232 @@
+{
+  "source": {
+    "mode": "mock_rules",
+    "kind": "verified_api_recording",
+    "case_id": "DEMO01"
+  },
+  "steps": {
+    "first": {
+      "body": {
+        "missing_fields": [],
+        "response_kind": "task",
+        "agent_outcomes": [
+          {
+            "phase": "inspect",
+            "stop_reason": "verified_by_workflow",
+            "actions": 3,
+            "failed": false
+          }
+        ],
+        "answer": "根据点评当前店铺数据，找到这些选择：乙火锅（评分 4.9 · 人均约 ¥150）；甲火锅（评分 4.7 · 人均约 ¥80）；丙火锅（评分 4.6 · 人均约 ¥120）。点击卡片查看店铺详情。",
+        "shops": [
+          {
+            "id": 102,
+            "name": "乙火锅",
+            "area": "人民广场",
+            "address": "人民广场测试路1号",
+            "avg_price": 150,
+            "score": 4.9,
+            "distance_m": null,
+            "image": null,
+            "url": "https://synthetic.invalid/shop-detail.html?id=102",
+            "reason": "评分 4.9 · 人均约 ¥150",
+            "coupons": [],
+            "coupon_lookup_status": "not_queried",
+            "coupon_face_saving_yuan": null,
+            "open_hours": "10:00-23:00",
+            "evidence": [
+              {
+                "field": "avgPrice",
+                "value": 150,
+                "source": "/shop/102",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "score",
+                "value": 49,
+                "source": "/shop/102",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "area",
+                "value": "人民广场",
+                "source": "/shop/102",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "x",
+                "value": 121.47,
+                "source": "/shop/102",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "y",
+                "value": 31.23,
+                "source": "/shop/102",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "openHours",
+                "value": "10:00-23:00",
+                "source": "/shop/102",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              }
+            ]
+          },
+          {
+            "id": 101,
+            "name": "甲火锅",
+            "area": "人民广场",
+            "address": "人民广场测试路1号",
+            "avg_price": 80,
+            "score": 4.7,
+            "distance_m": null,
+            "image": null,
+            "url": "https://synthetic.invalid/shop-detail.html?id=101",
+            "reason": "评分 4.7 · 人均约 ¥80",
+            "coupons": [],
+            "coupon_lookup_status": "not_queried",
+            "coupon_face_saving_yuan": null,
+            "open_hours": "10:00-23:00",
+            "evidence": [
+              {
+                "field": "avgPrice",
+                "value": 80,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "score",
+                "value": 47,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "area",
+                "value": "人民广场",
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "x",
+                "value": 121.47,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "y",
+                "value": 31.23,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "openHours",
+                "value": "10:00-23:00",
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              }
+            ]
+          },
+          {
+            "id": 103,
+            "name": "丙火锅",
+            "area": "人民广场",
+            "address": "人民广场测试路1号",
+            "avg_price": 120,
+            "score": 4.6,
+            "distance_m": null,
+            "image": null,
+            "url": "https://synthetic.invalid/shop-detail.html?id=103",
+            "reason": "评分 4.6 · 人均约 ¥120",
+            "coupons": [],
+            "coupon_lookup_status": "not_queried",
+            "coupon_face_saving_yuan": null,
+            "open_hours": "10:00-23:00",
+            "evidence": [
+              {
+                "field": "avgPrice",
+                "value": 120,
+                "source": "/shop/103",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "score",
+                "value": 46,
+                "source": "/shop/103",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "area",
+                "value": "人民广场",
+                "source": "/shop/103",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "x",
+                "value": 121.47,
+                "source": "/shop/103",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "y",
+                "value": 31.23,
+                "source": "/shop/103",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "openHours",
+                "value": "10:00-23:00",
+                "source": "/shop/103",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              }
+            ]
+          }
+        ],
+        "plan": {
+          "goal": "search",
+          "visit_day": null,
+          "area_unrestricted": false,
+          "budget_unrestricted": false,
+          "followup": false,
+          "relative_price": null,
+          "min_price": null,
+          "price_reference": null,
+          "category": "美食",
+          "keyword": "火锅",
+          "area": null,
+          "max_price": 150,
+          "min_score": null,
+          "wants_coupon": false,
+          "wants_notes": false,
+          "nearby": false,
+          "sort": "score",
+          "unverified_preferences": [],
+          "stops": [],
+          "party_size": null,
+          "total_budget": null,
+          "visit_time": null,
+          "excluded_shop_ids": [],
+          "required_shop_ids": [],
+          "fixed_first_shop_id": null,
+          "second_price_ceiling": null,
+          "fixed_shop_ids": [],
+          "stop_price_ceilings": {}
+        },
+        "itineraries": [],
+        "session_id": "13d20c38-0c9d-49e4-86e1-2a86683d95de",
+        "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+        "confirmed_constraints": [
+          "火锅",
+          "单站人均上限：¥150"
+        ],
+        "memory_applied": [],
+        "relaxations": [],
+        "candidate_decisions": [
+          {
+            "shop_id": 102,
+            "name": "乙火锅",
+            "outcome": "selected",
+            "reasons": [
+              "符合店铺硬条件",
+              "按当前排序进入展示结果"
+            ]
+          },
+          {
+            "shop_id": 101,
+            "name": "甲火锅",
+            "outcome": "selected",
+            "reasons": [
+              "符合店铺硬条件",
+              "按当前排序进入展示结果"
+            ]
+          },
+          {
+            "shop_id": 103,
+            "name": "丙火锅",
+            "outcome": "selected",
+            "reasons": [
+              "符合店铺硬条件",
+              "按当前排序进入展示结果"
+            ]
+          }
+        ],
+        "candidate_summary": [],
+        "action_draft": null,
+        "business_choices": [],
+        "business_state": null,
+        "recommendation_run_id": null,
+        "personal_orders": [],
+        "plan_changes": [],
+        "session_summary": "火锅；单站人均上限：¥150",
+        "status": "ok",
+        "mode": "rules",
+        "trace": [
+          {
+            "tool": "list_types",
+            "tool_call_id": "34c67d62-37fa-4cb4-b7f5-55b6aa3e35fa",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "ok": true,
+            "elapsed_ms": 1
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "0cab02a1-8781-459f-b628-d8b3f27c0e52",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "ok": true,
+            "elapsed_ms": 1
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "d9d3d3a4-05c0-4cfe-8478-a81384928914",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "ok": true,
+            "elapsed_ms": 0
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "403e5eda-94c6-48dd-91cd-34ac894dfe82",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "ok": true,
+            "elapsed_ms": 0
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "7d359ab5-1f3c-417a-8447-50d7c4cb53ee",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "ok": true,
+            "elapsed_ms": 0
+          }
+        ],
+        "events": [
+          {
+            "session_id": "13d20c38-0c9d-49e4-86e1-2a86683d95de",
+            "event": "run_start",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 1,
+            "elapsed_ms": 0
+          },
+          {
+            "reason": "model_not_configured",
+            "event": "planner_rules",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 2,
+            "elapsed_ms": 12
+          },
+          {
+            "stops": 0,
+            "mode": "rules",
+            "event": "plan",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 3,
+            "elapsed_ms": 14
+          },
+          {
+            "tool": "list_types",
+            "tool_call_id": "34c67d62-37fa-4cb4-b7f5-55b6aa3e35fa",
+            "event": "tool_start",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 4,
+            "elapsed_ms": 19
+          },
+          {
+            "tool": "list_types",
+            "tool_call_id": "34c67d62-37fa-4cb4-b7f5-55b6aa3e35fa",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 5,
+            "elapsed_ms": 19
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "0cab02a1-8781-459f-b628-d8b3f27c0e52",
+            "event": "tool_start",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 6,
+            "elapsed_ms": 24
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "0cab02a1-8781-459f-b628-d8b3f27c0e52",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 7,
+            "elapsed_ms": 25
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "d9d3d3a4-05c0-4cfe-8478-a81384928914",
+            "event": "tool_start",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 8,
+            "elapsed_ms": 29
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "d9d3d3a4-05c0-4cfe-8478-a81384928914",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 9,
+            "elapsed_ms": 30
+          },
+          {
+            "shop_id": 102,
+            "event": "candidate_verified",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 10,
+            "elapsed_ms": 34
+          },
+          {
+            "mode": "rules",
+            "tool": "get_shop",
+            "shop_id": 102,
+            "reason": "mandatory_candidate_verification",
+            "event": "agent_decision",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 11,
+            "elapsed_ms": 34
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "403e5eda-94c6-48dd-91cd-34ac894dfe82",
+            "event": "tool_start",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 12,
+            "elapsed_ms": 34
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "403e5eda-94c6-48dd-91cd-34ac894dfe82",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 13,
+            "elapsed_ms": 35
+          },
+          {
+            "shop_id": 101,
+            "event": "candidate_verified",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 14,
+            "elapsed_ms": 39
+          },
+          {
+            "mode": "rules",
+            "tool": "get_shop",
+            "shop_id": 101,
+            "reason": "mandatory_candidate_verification",
+            "event": "agent_decision",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 15,
+            "elapsed_ms": 39
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "7d359ab5-1f3c-417a-8447-50d7c4cb53ee",
+            "event": "tool_start",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 16,
+            "elapsed_ms": 40
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "7d359ab5-1f3c-417a-8447-50d7c4cb53ee",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 17,
+            "elapsed_ms": 40
+          },
+          {
+            "shop_id": 103,
+            "event": "candidate_verified",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 18,
+            "elapsed_ms": 44
+          },
+          {
+            "mode": "rules",
+            "tool": "get_shop",
+            "shop_id": 103,
+            "reason": "mandatory_candidate_verification",
+            "event": "agent_decision",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 19,
+            "elapsed_ms": 44
+          },
+          {
+            "phase": "single",
+            "before": 3,
+            "after": 3,
+            "event": "candidate_validation",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 20,
+            "elapsed_ms": 44
+          },
+          {
+            "accepted": 0,
+            "candidate_shops": 3,
+            "event": "evidence_validation",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 21,
+            "elapsed_ms": 48
+          },
+          {
+            "status": "ok",
+            "event": "run_end",
+            "run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "root_run_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "span_id": "d01402c2-505d-4c3f-9d50-27f30c759f5a",
+            "parent_span_id": null,
+            "sequence": 22,
+            "elapsed_ms": 52
+          }
+        ]
+      },
+      "calls": [
+        {
+          "operation": "current_user",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.4409638,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.4410328,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "list_types",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.4866025,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.4866785,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "search_shops",
+          "kind": "read",
+          "params": {
+            "typeId": "1",
+            "page": "1",
+            "size": "3",
+            "sort": "score",
+            "keyword": "火锅",
+            "maxPrice": "150"
+          },
+          "started_monotonic": 29838.491968,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.4921006,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "get_shop",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.4972172,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.4972871,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "get_shop",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.5020728,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.5021433,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "get_shop",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.507493,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.5075697,
+          "http_status": 200,
+          "business_success": true
+        }
+      ]
+    },
+    "edit": {
+      "body": {
+        "missing_fields": [],
+        "response_kind": "task",
+        "agent_outcomes": [
+          {
+            "phase": "inspect",
+            "stop_reason": "verified_by_workflow",
+            "actions": 3,
+            "failed": false
+          }
+        ],
+        "answer": "根据点评当前店铺数据，找到这些选择：甲火锅（评分 4.7 · 人均约 ¥80）；己火锅（评分 4.5 · 人均约 ¥100）；戊火锅（评分 4.3 · 人均约 ¥65）。点击卡片查看店铺详情。",
+        "shops": [
+          {
+            "id": 101,
+            "name": "甲火锅",
+            "area": "人民广场",
+            "address": "人民广场测试路1号",
+            "avg_price": 80,
+            "score": 4.7,
+            "distance_m": null,
+            "image": null,
+            "url": "https://synthetic.invalid/shop-detail.html?id=101",
+            "reason": "评分 4.7 · 人均约 ¥80",
+            "coupons": [],
+            "coupon_lookup_status": "not_queried",
+            "coupon_face_saving_yuan": null,
+            "open_hours": "10:00-23:00",
+            "evidence": [
+              {
+                "field": "avgPrice",
+                "value": 80,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "score",
+                "value": 47,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "area",
+                "value": "人民广场",
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "x",
+                "value": 121.47,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "y",
+                "value": 31.23,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "openHours",
+                "value": "10:00-23:00",
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              }
+            ]
+          },
+          {
+            "id": 106,
+            "name": "己火锅",
+            "area": "五角场",
+            "address": "五角场测试路1号",
+            "avg_price": 100,
+            "score": 4.5,
+            "distance_m": null,
+            "image": null,
+            "url": "https://synthetic.invalid/shop-detail.html?id=106",
+            "reason": "评分 4.5 · 人均约 ¥100",
+            "coupons": [],
+            "coupon_lookup_status": "not_queried",
+            "coupon_face_saving_yuan": null,
+            "open_hours": "10:00-23:00",
+            "evidence": [
+              {
+                "field": "avgPrice",
+                "value": 100,
+                "source": "/shop/106",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "score",
+                "value": 45,
+                "source": "/shop/106",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "area",
+                "value": "五角场",
+                "source": "/shop/106",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "x",
+                "value": 121.47,
+                "source": "/shop/106",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "y",
+                "value": 31.23,
+                "source": "/shop/106",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "openHours",
+                "value": "10:00-23:00",
+                "source": "/shop/106",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              }
+            ]
+          },
+          {
+            "id": 105,
+            "name": "戊火锅",
+            "area": "人民广场",
+            "address": "人民广场测试路1号",
+            "avg_price": 65,
+            "score": 4.3,
+            "distance_m": null,
+            "image": null,
+            "url": "https://synthetic.invalid/shop-detail.html?id=105",
+            "reason": "评分 4.3 · 人均约 ¥65",
+            "coupons": [],
+            "coupon_lookup_status": "not_queried",
+            "coupon_face_saving_yuan": null,
+            "open_hours": "10:00-23:00",
+            "evidence": [
+              {
+                "field": "avgPrice",
+                "value": 65,
+                "source": "/shop/105",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "score",
+                "value": 43,
+                "source": "/shop/105",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "area",
+                "value": "人民广场",
+                "source": "/shop/105",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "x",
+                "value": 121.47,
+                "source": "/shop/105",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "y",
+                "value": 31.23,
+                "source": "/shop/105",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              },
+              {
+                "field": "openHours",
+                "value": "10:00-23:00",
+                "source": "/shop/105",
+                "observed_at": "2026-10-28T18:59:56+08:00"
+              }
+            ]
+          }
+        ],
+        "plan": {
+          "goal": "search",
+          "visit_day": null,
+          "area_unrestricted": false,
+          "budget_unrestricted": false,
+          "followup": true,
+          "relative_price": null,
+          "min_price": null,
+          "price_reference": null,
+          "category": "美食",
+          "keyword": "火锅",
+          "area": null,
+          "max_price": 100,
+          "min_score": null,
+          "wants_coupon": false,
+          "wants_notes": false,
+          "nearby": false,
+          "sort": "score",
+          "unverified_preferences": [],
+          "stops": [],
+          "party_size": null,
+          "total_budget": null,
+          "visit_time": null,
+          "excluded_shop_ids": [],
+          "required_shop_ids": [],
+          "fixed_first_shop_id": null,
+          "second_price_ceiling": null,
+          "fixed_shop_ids": [],
+          "stop_price_ceilings": {}
+        },
+        "itineraries": [],
+        "session_id": "13d20c38-0c9d-49e4-86e1-2a86683d95de",
+        "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+        "confirmed_constraints": [
+          "火锅",
+          "单站人均上限：¥100"
+        ],
+        "memory_applied": [],
+        "relaxations": [],
+        "candidate_decisions": [
+          {
+            "shop_id": 101,
+            "name": "甲火锅",
+            "outcome": "selected",
+            "reasons": [
+              "符合店铺硬条件",
+              "按当前排序进入展示结果"
+            ]
+          },
+          {
+            "shop_id": 106,
+            "name": "己火锅",
+            "outcome": "selected",
+            "reasons": [
+              "符合店铺硬条件",
+              "按当前排序进入展示结果"
+            ]
+          },
+          {
+            "shop_id": 105,
+            "name": "戊火锅",
+            "outcome": "selected",
+            "reasons": [
+              "符合店铺硬条件",
+              "按当前排序进入展示结果"
+            ]
+          }
+        ],
+        "candidate_summary": [],
+        "action_draft": null,
+        "business_choices": [],
+        "business_state": null,
+        "recommendation_run_id": null,
+        "personal_orders": [],
+        "plan_changes": [
+          {
+            "field": "max_price",
+            "before": 150,
+            "after": 100
+          }
+        ],
+        "session_summary": "火锅；单站人均上限：¥100",
+        "status": "ok",
+        "mode": "rules",
+        "trace": [
+          {
+            "tool": "list_types",
+            "tool_call_id": "09a11e68-54da-4fe6-845d-f2af6e5e229a",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "ok": true,
+            "elapsed_ms": 0
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "9eda5888-7418-47c0-bb67-d59d2d4c54c5",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "ok": true,
+            "elapsed_ms": 1
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "53441866-16f4-4b96-b7fd-1518967a496e",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "ok": true,
+            "elapsed_ms": 0
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "0eb842fd-0271-48a6-b871-147292950291",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "ok": true,
+            "elapsed_ms": 0
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "5553c6b1-bad6-455d-a28d-0e8dbace2def",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "ok": true,
+            "elapsed_ms": 0
+          }
+        ],
+        "events": [
+          {
+            "session_id": "13d20c38-0c9d-49e4-86e1-2a86683d95de",
+            "event": "run_start",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 1,
+            "elapsed_ms": 0
+          },
+          {
+            "reason": "model_not_configured",
+            "event": "planner_rules",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 2,
+            "elapsed_ms": 9
+          },
+          {
+            "stops": 0,
+            "mode": "rules",
+            "event": "plan",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 3,
+            "elapsed_ms": 11
+          },
+          {
+            "changes": [
+              {
+                "field": "max_price",
+                "before": 150,
+                "after": 100
+              }
+            ],
+            "event": "plan_revised",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 4,
+            "elapsed_ms": 11
+          },
+          {
+            "tool": "list_types",
+            "tool_call_id": "09a11e68-54da-4fe6-845d-f2af6e5e229a",
+            "event": "tool_start",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 5,
+            "elapsed_ms": 16
+          },
+          {
+            "tool": "list_types",
+            "tool_call_id": "09a11e68-54da-4fe6-845d-f2af6e5e229a",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 6,
+            "elapsed_ms": 17
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "9eda5888-7418-47c0-bb67-d59d2d4c54c5",
+            "event": "tool_start",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 7,
+            "elapsed_ms": 22
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "9eda5888-7418-47c0-bb67-d59d2d4c54c5",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 8,
+            "elapsed_ms": 23
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "53441866-16f4-4b96-b7fd-1518967a496e",
+            "event": "tool_start",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 9,
+            "elapsed_ms": 28
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "53441866-16f4-4b96-b7fd-1518967a496e",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 10,
+            "elapsed_ms": 28
+          },
+          {
+            "shop_id": 101,
+            "event": "candidate_verified",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 11,
+            "elapsed_ms": 33
+          },
+          {
+            "mode": "rules",
+            "tool": "get_shop",
+            "shop_id": 101,
+            "reason": "mandatory_candidate_verification",
+            "event": "agent_decision",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 12,
+            "elapsed_ms": 33
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "0eb842fd-0271-48a6-b871-147292950291",
+            "event": "tool_start",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 13,
+            "elapsed_ms": 33
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "0eb842fd-0271-48a6-b871-147292950291",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 14,
+            "elapsed_ms": 34
+          },
+          {
+            "shop_id": 106,
+            "event": "candidate_verified",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 15,
+            "elapsed_ms": 39
+          },
+          {
+            "mode": "rules",
+            "tool": "get_shop",
+            "shop_id": 106,
+            "reason": "mandatory_candidate_verification",
+            "event": "agent_decision",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 16,
+            "elapsed_ms": 39
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "5553c6b1-bad6-455d-a28d-0e8dbace2def",
+            "event": "tool_start",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 17,
+            "elapsed_ms": 39
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "5553c6b1-bad6-455d-a28d-0e8dbace2def",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 18,
+            "elapsed_ms": 39
+          },
+          {
+            "shop_id": 105,
+            "event": "candidate_verified",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 19,
+            "elapsed_ms": 44
+          },
+          {
+            "mode": "rules",
+            "tool": "get_shop",
+            "shop_id": 105,
+            "reason": "mandatory_candidate_verification",
+            "event": "agent_decision",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 20,
+            "elapsed_ms": 44
+          },
+          {
+            "phase": "single",
+            "before": 3,
+            "after": 3,
+            "event": "candidate_validation",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 21,
+            "elapsed_ms": 44
+          },
+          {
+            "accepted": 0,
+            "candidate_shops": 3,
+            "event": "evidence_validation",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 22,
+            "elapsed_ms": 48
+          },
+          {
+            "status": "ok",
+            "event": "run_end",
+            "run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "root_run_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "span_id": "20499b52-f879-49c4-9b09-69eea0d00741",
+            "parent_span_id": null,
+            "sequence": 23,
+            "elapsed_ms": 53
+          }
+        ]
+      },
+      "calls": [
+        {
+          "operation": "current_user",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.5677326,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.5677919,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "list_types",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.6013358,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.6014065,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "search_shops",
+          "kind": "read",
+          "params": {
+            "typeId": "1",
+            "page": "1",
+            "size": "3",
+            "sort": "score",
+            "keyword": "火锅",
+            "maxPrice": "100"
+          },
+          "started_monotonic": 29838.6075508,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.6076729,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "get_shop",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.6129711,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.6130516,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "get_shop",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.6183972,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.6184701,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "get_shop",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.6239965,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.6240749,
+          "http_status": 200,
+          "business_success": true
+        }
+      ]
+    },
+    "itinerary": {
+      "body": {
+        "missing_fields": [],
+        "response_kind": "task",
+        "agent_outcomes": [],
+        "answer": "找到 3 组2站方案。首选：甲火锅 → 甲KTV；按 2 人 × 2 站人均价估算约 ¥320；相邻站直线距离合计约 0 米；按各站评分合计排序第 1。 方案仅从每站搜索第一页最多 20 家候选中计算。",
+        "shops": [
+          {
+            "id": 101,
+            "name": "甲火锅",
+            "area": "人民广场",
+            "address": "人民广场测试路1号",
+            "avg_price": 80,
+            "score": 4.7,
+            "distance_m": null,
+            "image": null,
+            "url": "https://synthetic.invalid/shop-detail.html?id=101",
+            "reason": "评分 4.7 · 人均约 ¥80",
+            "coupons": [],
+            "coupon_lookup_status": "not_queried",
+            "coupon_face_saving_yuan": null,
+            "open_hours": "10:00-23:00",
+            "evidence": [
+              {
+                "field": "avgPrice",
+                "value": 80,
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "score",
+                "value": 47,
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "area",
+                "value": "人民广场",
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "x",
+                "value": 121.47,
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "y",
+                "value": 31.23,
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "openHours",
+                "value": "10:00-23:00",
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              }
+            ]
+          },
+          {
+            "id": 201,
+            "name": "甲KTV",
+            "area": "人民广场",
+            "address": "人民广场测试路1号",
+            "avg_price": 80,
+            "score": 4.7,
+            "distance_m": null,
+            "image": null,
+            "url": "https://synthetic.invalid/shop-detail.html?id=201",
+            "reason": "评分 4.7 · 人均约 ¥80",
+            "coupons": [],
+            "coupon_lookup_status": "not_queried",
+            "coupon_face_saving_yuan": null,
+            "open_hours": "10:00-23:00",
+            "evidence": [
+              {
+                "field": "avgPrice",
+                "value": 80,
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "score",
+                "value": 47,
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "area",
+                "value": "人民广场",
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "x",
+                "value": 121.47,
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "y",
+                "value": 31.23,
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "openHours",
+                "value": "10:00-23:00",
+                "source": "/shop/batch",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              }
+            ]
+          }
+        ],
+        "plan": {
+          "goal": "search",
+          "visit_day": null,
+          "area_unrestricted": false,
+          "budget_unrestricted": false,
+          "followup": true,
+          "relative_price": null,
+          "min_price": null,
+          "price_reference": null,
+          "category": "美食",
+          "keyword": "火锅",
+          "area": null,
+          "max_price": 100,
+          "min_score": null,
+          "wants_coupon": false,
+          "wants_notes": false,
+          "nearby": false,
+          "sort": "score",
+          "unverified_preferences": [],
+          "stops": [
+            {
+              "category": "美食",
+              "keyword": "火锅",
+              "max_price": null
+            },
+            {
+              "category": "KTV",
+              "keyword": null,
+              "max_price": null
+            }
+          ],
+          "party_size": 2,
+          "total_budget": 400,
+          "visit_time": null,
+          "excluded_shop_ids": [],
+          "required_shop_ids": [],
+          "fixed_first_shop_id": null,
+          "second_price_ceiling": null,
+          "fixed_shop_ids": [],
+          "stop_price_ceilings": {}
+        },
+        "itineraries": [
+          {
+            "stops": [
+              {
+                "id": 101,
+                "name": "甲火锅",
+                "area": "人民广场",
+                "address": "人民广场测试路1号",
+                "avg_price": 80,
+                "score": 4.7,
+                "distance_m": null,
+                "image": null,
+                "url": "https://synthetic.invalid/shop-detail.html?id=101",
+                "reason": "评分 4.7 · 人均约 ¥80",
+                "coupons": [],
+                "coupon_lookup_status": "not_queried",
+                "coupon_face_saving_yuan": null,
+                "open_hours": "10:00-23:00",
+                "evidence": [
+                  {
+                    "field": "avgPrice",
+                    "value": 80,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "score",
+                    "value": 47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "area",
+                    "value": "人民广场",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "x",
+                    "value": 121.47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "y",
+                    "value": 31.23,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "openHours",
+                    "value": "10:00-23:00",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  }
+                ]
+              },
+              {
+                "id": 201,
+                "name": "甲KTV",
+                "area": "人民广场",
+                "address": "人民广场测试路1号",
+                "avg_price": 80,
+                "score": 4.7,
+                "distance_m": null,
+                "image": null,
+                "url": "https://synthetic.invalid/shop-detail.html?id=201",
+                "reason": "评分 4.7 · 人均约 ¥80",
+                "coupons": [],
+                "coupon_lookup_status": "not_queried",
+                "coupon_face_saving_yuan": null,
+                "open_hours": "10:00-23:00",
+                "evidence": [
+                  {
+                    "field": "avgPrice",
+                    "value": 80,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "score",
+                    "value": 47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "area",
+                    "value": "人民广场",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "x",
+                    "value": 121.47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "y",
+                    "value": 31.23,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "openHours",
+                    "value": "10:00-23:00",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  }
+                ]
+              }
+            ],
+            "estimated_total": 320,
+            "party_size": 2,
+            "straight_distance_m": 0.0,
+            "leg_distances_m": [
+              0.0
+            ],
+            "reason": "按 2 人 × 2 站人均价估算约 ¥320；相邻站直线距离合计约 0 米；按各站评分合计排序第 1",
+            "visit_times": []
+          },
+          {
+            "stops": [
+              {
+                "id": 106,
+                "name": "己火锅",
+                "area": "五角场",
+                "address": "五角场测试路1号",
+                "avg_price": 100,
+                "score": 4.5,
+                "distance_m": null,
+                "image": null,
+                "url": "https://synthetic.invalid/shop-detail.html?id=106",
+                "reason": "评分 4.5 · 人均约 ¥100",
+                "coupons": [],
+                "coupon_lookup_status": "not_queried",
+                "coupon_face_saving_yuan": null,
+                "open_hours": "10:00-23:00",
+                "evidence": [
+                  {
+                    "field": "avgPrice",
+                    "value": 100,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "score",
+                    "value": 45,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "area",
+                    "value": "五角场",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "x",
+                    "value": 121.47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "y",
+                    "value": 31.23,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "openHours",
+                    "value": "10:00-23:00",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  }
+                ]
+              },
+              {
+                "id": 201,
+                "name": "甲KTV",
+                "area": "人民广场",
+                "address": "人民广场测试路1号",
+                "avg_price": 80,
+                "score": 4.7,
+                "distance_m": null,
+                "image": null,
+                "url": "https://synthetic.invalid/shop-detail.html?id=201",
+                "reason": "评分 4.7 · 人均约 ¥80",
+                "coupons": [],
+                "coupon_lookup_status": "not_queried",
+                "coupon_face_saving_yuan": null,
+                "open_hours": "10:00-23:00",
+                "evidence": [
+                  {
+                    "field": "avgPrice",
+                    "value": 80,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "score",
+                    "value": 47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "area",
+                    "value": "人民广场",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "x",
+                    "value": 121.47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "y",
+                    "value": 31.23,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "openHours",
+                    "value": "10:00-23:00",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  }
+                ]
+              }
+            ],
+            "estimated_total": 360,
+            "party_size": 2,
+            "straight_distance_m": 0.0,
+            "leg_distances_m": [
+              0.0
+            ],
+            "reason": "按 2 人 × 2 站人均价估算约 ¥360；相邻站直线距离合计约 0 米；按各站评分合计排序第 2",
+            "visit_times": []
+          },
+          {
+            "stops": [
+              {
+                "id": 101,
+                "name": "甲火锅",
+                "area": "人民广场",
+                "address": "人民广场测试路1号",
+                "avg_price": 80,
+                "score": 4.7,
+                "distance_m": null,
+                "image": null,
+                "url": "https://synthetic.invalid/shop-detail.html?id=101",
+                "reason": "评分 4.7 · 人均约 ¥80",
+                "coupons": [],
+                "coupon_lookup_status": "not_queried",
+                "coupon_face_saving_yuan": null,
+                "open_hours": "10:00-23:00",
+                "evidence": [
+                  {
+                    "field": "avgPrice",
+                    "value": 80,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "score",
+                    "value": 47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "area",
+                    "value": "人民广场",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "x",
+                    "value": 121.47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "y",
+                    "value": 31.23,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "openHours",
+                    "value": "10:00-23:00",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  }
+                ]
+              },
+              {
+                "id": 202,
+                "name": "乙KTV",
+                "area": "人民广场",
+                "address": "人民广场测试路1号",
+                "avg_price": 50,
+                "score": 4.4,
+                "distance_m": null,
+                "image": null,
+                "url": "https://synthetic.invalid/shop-detail.html?id=202",
+                "reason": "评分 4.4 · 人均约 ¥50",
+                "coupons": [],
+                "coupon_lookup_status": "not_queried",
+                "coupon_face_saving_yuan": null,
+                "open_hours": "10:00-23:00",
+                "evidence": [
+                  {
+                    "field": "avgPrice",
+                    "value": 50,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "score",
+                    "value": 44,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "area",
+                    "value": "人民广场",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "x",
+                    "value": 121.47,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "y",
+                    "value": 31.23,
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  },
+                  {
+                    "field": "openHours",
+                    "value": "10:00-23:00",
+                    "source": "/shop/batch",
+                    "observed_at": "2026-10-28T18:59:57+08:00"
+                  }
+                ]
+              }
+            ],
+            "estimated_total": 260,
+            "party_size": 2,
+            "straight_distance_m": 0.0,
+            "leg_distances_m": [
+              0.0
+            ],
+            "reason": "按 2 人 × 2 站人均价估算约 ¥260；相邻站直线距离合计约 0 米；按各站评分合计排序第 3",
+            "visit_times": []
+          }
+        ],
+        "session_id": "13d20c38-0c9d-49e4-86e1-2a86683d95de",
+        "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+        "confirmed_constraints": [
+          "火锅 → KTV",
+          "人数：2",
+          "总预算：¥400",
+          "单站人均上限：¥100"
+        ],
+        "memory_applied": [],
+        "relaxations": [],
+        "candidate_decisions": [
+          {
+            "shop_id": 101,
+            "name": "甲火锅",
+            "outcome": "selected",
+            "reasons": [
+              "通过当前硬条件复核",
+              "进入方案 1，按各站评分合计排序"
+            ]
+          },
+          {
+            "shop_id": 201,
+            "name": "甲KTV",
+            "outcome": "selected",
+            "reasons": [
+              "通过当前硬条件复核",
+              "进入方案 1，按各站评分合计排序"
+            ]
+          },
+          {
+            "shop_id": 106,
+            "name": "己火锅",
+            "outcome": "alternative",
+            "reasons": [
+              "通过当前硬条件复核",
+              "进入方案 2，按各站评分合计排序"
+            ]
+          },
+          {
+            "shop_id": 201,
+            "name": "甲KTV",
+            "outcome": "alternative",
+            "reasons": [
+              "通过当前硬条件复核",
+              "进入方案 2，按各站评分合计排序"
+            ]
+          },
+          {
+            "shop_id": 101,
+            "name": "甲火锅",
+            "outcome": "alternative",
+            "reasons": [
+              "通过当前硬条件复核",
+              "进入方案 3，按各站评分合计排序"
+            ]
+          },
+          {
+            "shop_id": 202,
+            "name": "乙KTV",
+            "outcome": "alternative",
+            "reasons": [
+              "通过当前硬条件复核",
+              "进入方案 3，按各站评分合计排序"
+            ]
+          },
+          {
+            "shop_id": 105,
+            "name": "戊火锅",
+            "outcome": "excluded",
+            "reasons": [
+              "通过硬条件复核；未进入前三组方案"
+            ]
+          }
+        ],
+        "candidate_summary": [
+          {
+            "stop": 1,
+            "searched": 3,
+            "verified": 3,
+            "excluded": 0,
+            "displayed": 2
+          },
+          {
+            "stop": 2,
+            "searched": 2,
+            "verified": 2,
+            "excluded": 0,
+            "displayed": 2
+          }
+        ],
+        "action_draft": null,
+        "business_choices": [],
+        "business_state": null,
+        "recommendation_run_id": null,
+        "personal_orders": [],
+        "plan_changes": [
+          {
+            "field": "stops",
+            "before": [],
+            "after": [
+              {
+                "category": "美食",
+                "keyword": "火锅",
+                "max_price": null
+              },
+              {
+                "category": "KTV",
+                "keyword": null,
+                "max_price": null
+              }
+            ]
+          },
+          {
+            "field": "party_size",
+            "before": null,
+            "after": 2
+          },
+          {
+            "field": "total_budget",
+            "before": null,
+            "after": 400
+          }
+        ],
+        "session_summary": "火锅 → KTV；人数：2；总预算：¥400；单站人均上限：¥100",
+        "status": "ok",
+        "mode": "rules",
+        "trace": [
+          {
+            "tool": "list_types",
+            "tool_call_id": "0eb22f67-23d2-4de9-b74b-00c0808b4723",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "ok": true,
+            "elapsed_ms": 1
+          },
+          {
+            "tool": "list_areas",
+            "tool_call_id": "473c4b50-7819-43aa-b539-417d233c3ae7",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "ok": true,
+            "elapsed_ms": 1
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "037a6f1b-4946-4ec4-ba96-0053318d4f4c",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "ok": true,
+            "elapsed_ms": 1
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "bc60bc78-b623-4026-a092-0c783b7133ca",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "ok": true,
+            "elapsed_ms": 1
+          },
+          {
+            "tool": "get_shops",
+            "tool_call_id": "5f262ed7-270b-4384-a1f2-9cbe35a57f7f",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "ok": true,
+            "elapsed_ms": 1
+          }
+        ],
+        "events": [
+          {
+            "session_id": "13d20c38-0c9d-49e4-86e1-2a86683d95de",
+            "event": "run_start",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 1,
+            "elapsed_ms": 0
+          },
+          {
+            "reason": "model_not_configured",
+            "event": "planner_rules",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 2,
+            "elapsed_ms": 10
+          },
+          {
+            "stops": 2,
+            "mode": "rules",
+            "event": "plan",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 3,
+            "elapsed_ms": 10
+          },
+          {
+            "changes": [
+              {
+                "field": "stops",
+                "before": [],
+                "after": [
+                  {
+                    "category": "美食",
+                    "keyword": "火锅",
+                    "max_price": null
+                  },
+                  {
+                    "category": "KTV",
+                    "keyword": null,
+                    "max_price": null
+                  }
+                ]
+              },
+              {
+                "field": "party_size",
+                "before": null,
+                "after": 2
+              },
+              {
+                "field": "total_budget",
+                "before": null,
+                "after": 400
+              }
+            ],
+            "event": "plan_revised",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 4,
+            "elapsed_ms": 10
+          },
+          {
+            "tool": "list_types",
+            "tool_call_id": "0eb22f67-23d2-4de9-b74b-00c0808b4723",
+            "event": "tool_start",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 5,
+            "elapsed_ms": 16
+          },
+          {
+            "tool": "list_types",
+            "tool_call_id": "0eb22f67-23d2-4de9-b74b-00c0808b4723",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 6,
+            "elapsed_ms": 17
+          },
+          {
+            "tool": "list_areas",
+            "tool_call_id": "473c4b50-7819-43aa-b539-417d233c3ae7",
+            "event": "tool_start",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 7,
+            "elapsed_ms": 22
+          },
+          {
+            "tool": "list_areas",
+            "tool_call_id": "473c4b50-7819-43aa-b539-417d233c3ae7",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 8,
+            "elapsed_ms": 22
+          },
+          {
+            "area": null,
+            "event": "plan_resolved",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 9,
+            "elapsed_ms": 27
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "037a6f1b-4946-4ec4-ba96-0053318d4f4c",
+            "event": "tool_start",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 10,
+            "elapsed_ms": 33
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "037a6f1b-4946-4ec4-ba96-0053318d4f4c",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 11,
+            "elapsed_ms": 33
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "bc60bc78-b623-4026-a092-0c783b7133ca",
+            "event": "tool_start",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 12,
+            "elapsed_ms": 38
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "bc60bc78-b623-4026-a092-0c783b7133ca",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 13,
+            "elapsed_ms": 39
+          },
+          {
+            "tool": "get_shops",
+            "tool_call_id": "5f262ed7-270b-4384-a1f2-9cbe35a57f7f",
+            "event": "tool_start",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 14,
+            "elapsed_ms": 45
+          },
+          {
+            "tool": "get_shops",
+            "tool_call_id": "5f262ed7-270b-4384-a1f2-9cbe35a57f7f",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 15,
+            "elapsed_ms": 45
+          },
+          {
+            "requested": 5,
+            "returned": 5,
+            "event": "candidate_detail_batch",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 16,
+            "elapsed_ms": 50
+          },
+          {
+            "phase": "stop_1",
+            "before": 3,
+            "after": 3,
+            "event": "candidate_validation",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 17,
+            "elapsed_ms": 50
+          },
+          {
+            "phase": "stop_2",
+            "before": 2,
+            "after": 2,
+            "event": "candidate_validation",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 18,
+            "elapsed_ms": 54
+          },
+          {
+            "combinations": 6,
+            "time_rejected": 0,
+            "held_rejected": 0,
+            "cheapest_feasible_total": 230,
+            "event": "itinerary_validation",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 19,
+            "elapsed_ms": 59
+          },
+          {
+            "accepted": 0,
+            "candidate_shops": 4,
+            "event": "evidence_validation",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 20,
+            "elapsed_ms": 63
+          },
+          {
+            "status": "ok",
+            "event": "run_end",
+            "run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "root_run_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "span_id": "b5b7299d-899b-4e65-a008-9a167adc7179",
+            "parent_span_id": null,
+            "sequence": 21,
+            "elapsed_ms": 67
+          }
+        ]
+      },
+      "calls": [
+        {
+          "operation": "current_user",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.6614612,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.6615187,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "list_types",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.6980354,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.6981081,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "list_areas",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.7037641,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.7038444,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "search_shops",
+          "kind": "read",
+          "params": {
+            "typeId": "1",
+            "page": "1",
+            "size": "20",
+            "sort": "score",
+            "keyword": "火锅",
+            "maxPrice": "100"
+          },
+          "started_monotonic": 29838.7146242,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.7147539,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "search_shops",
+          "kind": "read",
+          "params": {
+            "typeId": "2",
+            "page": "1",
+            "size": "20",
+            "sort": "score",
+            "maxPrice": "100"
+          },
+          "started_monotonic": 29838.7203517,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.7204482,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "get_shops",
+          "kind": "read",
+          "params": {
+            "ids": "101,106,105,201,202"
+          },
+          "started_monotonic": 29838.7268042,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.7269175,
+          "http_status": 200,
+          "business_success": true
+        }
+      ]
+    },
+    "find": {
+      "body": {
+        "missing_fields": [],
+        "response_kind": "task",
+        "agent_outcomes": [
+          {
+            "phase": "inspect",
+            "stop_reason": "verified_by_workflow",
+            "actions": 1,
+            "failed": false
+          }
+        ],
+        "answer": "根据点评当前店铺数据，找到这些选择：甲火锅（评分 4.7 · 人均约 ¥80 · 有 2 张券可查看 · 单张券面差额最高 ¥20，适用条件待核）。点击卡片查看店铺详情。",
+        "shops": [
+          {
+            "id": 101,
+            "name": "甲火锅",
+            "area": "人民广场",
+            "address": "人民广场测试路1号",
+            "avg_price": 80,
+            "score": 4.7,
+            "distance_m": null,
+            "image": null,
+            "url": "https://synthetic.invalid/shop-detail.html?id=101",
+            "reason": "评分 4.7 · 人均约 ¥80 · 有 2 张券可查看 · 单张券面差额最高 ¥20，适用条件待核",
+            "coupons": [
+              {
+                "id": 9001,
+                "shopId": 101,
+                "title": "测试免费券",
+                "payValue": 0,
+                "actualValue": 500,
+                "type": 0,
+                "status": 1,
+                "rules": "周六可用，需预约"
+              },
+              {
+                "id": 9002,
+                "shopId": 101,
+                "title": "测试付费券",
+                "payValue": 8000,
+                "actualValue": 10000,
+                "type": 0,
+                "status": 1,
+                "rules": "堂食可用"
+              }
+            ],
+            "coupon_lookup_status": "available",
+            "coupon_face_saving_yuan": 20.0,
+            "open_hours": "10:00-23:00",
+            "evidence": [
+              {
+                "field": "avgPrice",
+                "value": 80,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "score",
+                "value": 47,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "area",
+                "value": "人民广场",
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "x",
+                "value": 121.47,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "y",
+                "value": 31.23,
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "openHours",
+                "value": "10:00-23:00",
+                "source": "/shop/101",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              },
+              {
+                "field": "coupons",
+                "value": [
+                  9001,
+                  9002
+                ],
+                "source": "/voucher/list/101",
+                "observed_at": "2026-10-28T18:59:57+08:00"
+              }
+            ]
+          }
+        ],
+        "plan": {
+          "goal": "search",
+          "visit_day": null,
+          "area_unrestricted": false,
+          "budget_unrestricted": false,
+          "followup": false,
+          "relative_price": null,
+          "min_price": null,
+          "price_reference": null,
+          "category": "美食",
+          "keyword": "火锅",
+          "area": null,
+          "max_price": 150,
+          "min_score": null,
+          "wants_coupon": true,
+          "wants_notes": false,
+          "nearby": false,
+          "sort": "score",
+          "unverified_preferences": [],
+          "stops": [],
+          "party_size": null,
+          "total_budget": null,
+          "visit_time": null,
+          "excluded_shop_ids": [],
+          "required_shop_ids": [],
+          "fixed_first_shop_id": null,
+          "second_price_ceiling": null,
+          "fixed_shop_ids": [],
+          "stop_price_ceilings": {}
+        },
+        "itineraries": [],
+        "session_id": "13d20c38-0c9d-49e4-86e1-2a86683d95de",
+        "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+        "confirmed_constraints": [
+          "火锅",
+          "单站人均上限：¥150",
+          "关注优惠券"
+        ],
+        "memory_applied": [],
+        "relaxations": [],
+        "candidate_decisions": [
+          {
+            "shop_id": 101,
+            "name": "甲火锅",
+            "outcome": "selected",
+            "reasons": [
+              "符合店铺硬条件",
+              "按当前排序进入展示结果"
+            ]
+          }
+        ],
+        "candidate_summary": [],
+        "action_draft": null,
+        "business_choices": [],
+        "business_state": null,
+        "recommendation_run_id": null,
+        "personal_orders": [],
+        "plan_changes": [
+          {
+            "field": "stops",
+            "before": [
+              {
+                "category": "美食",
+                "keyword": "火锅",
+                "max_price": null
+              },
+              {
+                "category": "KTV",
+                "keyword": null,
+                "max_price": null
+              }
+            ],
+            "after": []
+          },
+          {
+            "field": "max_price",
+            "before": 100,
+            "after": 150
+          },
+          {
+            "field": "party_size",
+            "before": 2,
+            "after": null
+          },
+          {
+            "field": "total_budget",
+            "before": 400,
+            "after": null
+          },
+          {
+            "field": "wants_coupon",
+            "before": false,
+            "after": true
+          }
+        ],
+        "session_summary": "火锅；单站人均上限：¥150；关注优惠券",
+        "status": "ok",
+        "mode": "rules",
+        "trace": [
+          {
+            "tool": "list_types",
+            "tool_call_id": "76971018-da6b-40f0-9a12-f79fa6d59f5b",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "ok": true,
+            "elapsed_ms": 0
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "d0206aca-b14c-473d-a518-5b6f047ade79",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "ok": true,
+            "elapsed_ms": 1
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "3af1c212-7733-4c72-acb1-14650f841aca",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "ok": true,
+            "elapsed_ms": 0
+          },
+          {
+            "tool": "list_vouchers",
+            "tool_call_id": "8dc5a5a5-ef5c-41d3-bcf6-4d1a5d899521",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "ok": true,
+            "elapsed_ms": 0
+          }
+        ],
+        "events": [
+          {
+            "event": "run_start",
+            "run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "parent_span_id": null,
+            "sequence": 1,
+            "elapsed_ms": 0
+          },
+          {
+            "session_id": "13d20c38-0c9d-49e4-86e1-2a86683d95de",
+            "event": "run_start",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 2,
+            "elapsed_ms": 5
+          },
+          {
+            "reason": "model_not_configured",
+            "event": "planner_rules",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 3,
+            "elapsed_ms": 15
+          },
+          {
+            "stops": 0,
+            "mode": "rules",
+            "event": "plan",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 4,
+            "elapsed_ms": 15
+          },
+          {
+            "changes": [
+              {
+                "field": "stops",
+                "before": [
+                  {
+                    "category": "美食",
+                    "keyword": "火锅",
+                    "max_price": null
+                  },
+                  {
+                    "category": "KTV",
+                    "keyword": null,
+                    "max_price": null
+                  }
+                ],
+                "after": []
+              },
+              {
+                "field": "max_price",
+                "before": 100,
+                "after": 150
+              },
+              {
+                "field": "party_size",
+                "before": 2,
+                "after": null
+              },
+              {
+                "field": "total_budget",
+                "before": 400,
+                "after": null
+              },
+              {
+                "field": "wants_coupon",
+                "before": false,
+                "after": true
+              }
+            ],
+            "event": "plan_revised",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 5,
+            "elapsed_ms": 15
+          },
+          {
+            "tool": "list_types",
+            "tool_call_id": "76971018-da6b-40f0-9a12-f79fa6d59f5b",
+            "event": "tool_start",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 6,
+            "elapsed_ms": 19
+          },
+          {
+            "tool": "list_types",
+            "tool_call_id": "76971018-da6b-40f0-9a12-f79fa6d59f5b",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 7,
+            "elapsed_ms": 20
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "d0206aca-b14c-473d-a518-5b6f047ade79",
+            "event": "tool_start",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 8,
+            "elapsed_ms": 25
+          },
+          {
+            "tool": "search_shops",
+            "tool_call_id": "d0206aca-b14c-473d-a518-5b6f047ade79",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 9,
+            "elapsed_ms": 26
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "3af1c212-7733-4c72-acb1-14650f841aca",
+            "event": "tool_start",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 10,
+            "elapsed_ms": 31
+          },
+          {
+            "tool": "get_shop",
+            "tool_call_id": "3af1c212-7733-4c72-acb1-14650f841aca",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 11,
+            "elapsed_ms": 31
+          },
+          {
+            "shop_id": 101,
+            "event": "candidate_verified",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 12,
+            "elapsed_ms": 35
+          },
+          {
+            "mode": "rules",
+            "tool": "get_shop",
+            "shop_id": 101,
+            "reason": "mandatory_candidate_verification",
+            "event": "agent_decision",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 13,
+            "elapsed_ms": 36
+          },
+          {
+            "phase": "single",
+            "before": 1,
+            "after": 1,
+            "event": "candidate_validation",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 14,
+            "elapsed_ms": 36
+          },
+          {
+            "mode": "rules",
+            "actions": 1,
+            "reason": "no_model_action",
+            "event": "agent_decision",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 15,
+            "elapsed_ms": 40
+          },
+          {
+            "tool": "list_vouchers",
+            "tool_call_id": "8dc5a5a5-ef5c-41d3-bcf6-4d1a5d899521",
+            "event": "tool_start",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 16,
+            "elapsed_ms": 40
+          },
+          {
+            "tool": "list_vouchers",
+            "tool_call_id": "8dc5a5a5-ef5c-41d3-bcf6-4d1a5d899521",
+            "ok": true,
+            "event": "tool_end",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 17,
+            "elapsed_ms": 41
+          },
+          {
+            "accepted": 0,
+            "candidate_shops": 1,
+            "event": "evidence_validation",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 18,
+            "elapsed_ms": 45
+          },
+          {
+            "status": "ok",
+            "event": "run_end",
+            "run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "parent_span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "sequence": 19,
+            "elapsed_ms": 50
+          },
+          {
+            "child_run_id": "037fd90b-043c-4bc0-b4bc-e9c7cc18a49a",
+            "event": "business_read_end",
+            "run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "parent_span_id": null,
+            "sequence": 20,
+            "elapsed_ms": 59
+          },
+          {
+            "status": "ok",
+            "event": "run_end",
+            "run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "root_run_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "span_id": "6810521a-694f-4f20-b7aa-75fe6ceecee7",
+            "parent_span_id": null,
+            "sequence": 21,
+            "elapsed_ms": 59
+          }
+        ]
+      },
+      "calls": [
+        {
+          "operation": "current_user",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.7817884,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.7818461,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "list_types",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.8153957,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.8154689,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "search_shops",
+          "kind": "read",
+          "params": {
+            "typeId": "1",
+            "page": "1",
+            "size": "3",
+            "sort": "score",
+            "keyword": "火锅",
+            "maxPrice": "150",
+            "hasVoucher": "true"
+          },
+          "started_monotonic": 29838.8212127,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.8213312,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "get_shop",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.8265591,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.8266305,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "list_vouchers",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.8360731,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.8361548,
+          "http_status": 200,
+          "business_success": true
+        }
+      ]
+    },
+    "prepare": {
+      "body": {
+        "action_id": "ac5f6940-54b1-442c-9475-d95af6a44158",
+        "state": "prepared",
+        "expires_in_seconds": 300,
+        "operation": "领取免费券",
+        "shop": {
+          "id": 101,
+          "name": "甲火锅"
+        },
+        "voucher": {
+          "id": 9001,
+          "title": "测试免费券",
+          "rules": "周六可用，需预约",
+          "pay_cents": 0,
+          "face_cents": 500,
+          "stock": null,
+          "begin_time": null,
+          "end_time": null
+        },
+        "notice": "确认后会向点评提交订单；免费券将直接领取。"
+      },
+      "calls": [
+        {
+          "operation": "current_user",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.8699839,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.8700435,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "get_shop",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.8736705,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.873749,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "list_vouchers",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.873931,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.873987,
+          "http_status": 200,
+          "business_success": true
+        }
+      ]
+    },
+    "first_confirm": {
+      "body": {
+        "action_id": "ac5f6940-54b1-442c-9475-d95af6a44158",
+        "state": "submitted",
+        "order_id": "800000",
+        "voucher_id": 9001,
+        "free": true,
+        "kind": "ordinary",
+        "cancellable": false
+      },
+      "calls": [
+        {
+          "operation": "current_user",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.8858456,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.885899,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "list_vouchers",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.8890401,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.8891232,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "create_voucher_order",
+          "kind": "write",
+          "params": {},
+          "started_monotonic": 29838.8948832,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.8949481,
+          "http_status": 200,
+          "business_success": true
+        }
+      ]
+    },
+    "second_confirm": {
+      "body": {
+        "action_id": "ac5f6940-54b1-442c-9475-d95af6a44158",
+        "state": "submitted",
+        "order_id": "800000",
+        "voucher_id": 9001,
+        "free": true,
+        "kind": "ordinary",
+        "cancellable": false
+      },
+      "calls": [
+        {
+          "operation": "current_user",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.9034324,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.9034844,
+          "http_status": 200,
+          "business_success": true
+        }
+      ]
+    },
+    "receipt": {
+      "body": {
+        "action_id": "ac5f6940-54b1-442c-9475-d95af6a44158",
+        "state": "submitted",
+        "order_id": "800000",
+        "voucher_id": 9001,
+        "free": true,
+        "kind": "ordinary",
+        "order_status": 2,
+        "cancellable": false
+      },
+      "calls": [
+        {
+          "operation": "current_user",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.9120112,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.9120742,
+          "http_status": 200,
+          "business_success": true
+        },
+        {
+          "operation": "query_voucher_order",
+          "kind": "read",
+          "params": {},
+          "started_monotonic": 29838.9156263,
+          "started_after_cancel": false,
+          "started_after_deadline": false,
+          "finished_monotonic": 29838.9157001,
+          "http_status": 200,
+          "business_success": true
+        }
+      ]
+    }
+  },
+  "world": {
+    "shops": {
+      "101": {
+        "id": 101,
+        "name": "甲火锅",
+        "typeId": 1,
+        "avgPrice": 80,
+        "score": 47,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "102": {
+        "id": 102,
+        "name": "乙火锅",
+        "typeId": 1,
+        "avgPrice": 150,
+        "score": 49,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "103": {
+        "id": 103,
+        "name": "丙火锅",
+        "typeId": 1,
+        "avgPrice": 120,
+        "score": 46,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "104": {
+        "id": 104,
+        "name": "丁火锅",
+        "typeId": 1,
+        "avgPrice": 180,
+        "score": 48,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "105": {
+        "id": 105,
+        "name": "戊火锅",
+        "typeId": 1,
+        "avgPrice": 65,
+        "score": 43,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "106": {
+        "id": 106,
+        "name": "己火锅",
+        "typeId": 1,
+        "avgPrice": 100,
+        "score": 45,
+        "area": "五角场",
+        "address": "五角场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "201": {
+        "id": 201,
+        "name": "甲KTV",
+        "typeId": 2,
+        "avgPrice": 80,
+        "score": 47,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "202": {
+        "id": 202,
+        "name": "乙KTV",
+        "typeId": 2,
+        "avgPrice": 50,
+        "score": 44,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "203": {
+        "id": 203,
+        "name": "丙KTV",
+        "typeId": 2,
+        "avgPrice": 120,
+        "score": 49,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "301": {
+        "id": 301,
+        "name": "测试健身馆",
+        "typeId": 4,
+        "avgPrice": 80,
+        "score": 48,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "401": {
+        "id": 401,
+        "name": "测试面馆",
+        "typeId": 1,
+        "avgPrice": 40,
+        "score": 46,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      },
+      "501": {
+        "id": 501,
+        "name": "测试咖啡馆",
+        "typeId": 1,
+        "avgPrice": 35,
+        "score": 46,
+        "area": "人民广场",
+        "address": "人民广场测试路1号",
+        "x": 121.47,
+        "y": 31.23,
+        "openHours": "10:00-23:00",
+        "images": ""
+      }
+    },
+    "types": [
+      {
+        "id": 1,
+        "name": "美食"
+      },
+      {
+        "id": 2,
+        "name": "KTV"
+      },
+      {
+        "id": 4,
+        "name": "健身运动"
+      }
+    ],
+    "vouchers": {
+      "9001": {
+        "id": 9001,
+        "shopId": 101,
+        "title": "测试免费券",
+        "payValue": 0,
+        "actualValue": 500,
+        "type": 0,
+        "status": 1,
+        "rules": "周六可用，需预约"
+      },
+      "9002": {
+        "id": 9002,
+        "shopId": 101,
+        "title": "测试付费券",
+        "payValue": 8000,
+        "actualValue": 10000,
+        "type": 0,
+        "status": 1,
+        "rules": "堂食可用"
+      }
+    },
+    "orders": [],
+    "blogs": [
+      {
+        "id": 7001,
+        "shopId": 101,
+        "title": "测试探店",
+        "content": "个人感受比较安静；仅供参考。"
+      }
+    ]
+  }
+}

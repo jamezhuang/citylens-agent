@@ -1,5 +1,13 @@
 # CityLens · 本地生活 AI Agent
 
+## 在线体验：点开即用
+
+### [打开 CityLens 网站与完整 Demo →](https://citylens-agent-demo.wealthy-liege-0y.chatgpt.site)
+
+无需安装、部署、登录或配置密钥。进入网站后点击 **“开始完整案例”**，依次体验：找店 → 调整预算 → 两站行程 → 查询优惠 → 领券预览 → 明确确认 → 我的订单 / 券包。
+
+网站复用本项目的 Vue 工作台。对话是已验证规则 Agent 案例的交互回放，订单在当前浏览器内模拟；不连接实时大模型，不产生真实交易，刷新页面即重置。可自由浏览合成店铺，并查看原案例运行记录。网站由 Sites 托管，源码保存在本 GitHub 仓库。
+
 ## 完整 Agent Demo：5分钟复现
 
 **[开始演示](docs/DEMO.md) · [直接阅读完整执行记录](docs/demo/transcript.md) · [自动验收](https://github.com/jamezhuang/citylens-agent/actions/workflows/agent-demo.yml)**

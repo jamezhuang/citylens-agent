@@ -1,4 +1,5 @@
 export async function api(path: string, method = 'GET', body?: unknown): Promise<any> {
+  if (import.meta.env.MODE === 'demo') return (await import('./demo.mjs')).demoApi(path, method, body)
   const r = await fetch(path, { method, credentials: 'same-origin', headers: body === undefined ? {} : { 'Content-Type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body) })
   const data = await r.json()
   if (!r.ok) { if (r.status === 401) window.dispatchEvent(new Event('auth-expired')); throw new Error(typeof data.detail === 'string' ? data.detail : '请求失败，请检查输入或稍后重试') }
